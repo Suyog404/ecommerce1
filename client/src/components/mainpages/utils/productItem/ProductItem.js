@@ -13,7 +13,7 @@ function ProductItem({product, isAdmin, deleteProduct, handleCheck}) {
 
             <div className="product_box">
                 <h2 title={product.title}>{product.title}</h2>
-                <span>${product.price}</span>
+                <span>Rs{product.price}</span>
                 <p>{product.description}</p>
             </div>
 

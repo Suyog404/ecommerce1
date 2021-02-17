@@ -9,10 +9,10 @@ function App() {
   return (
     <DataProvider>
       <Router>
-        <div className="App">
+    <div className="App">
           <Header />
           <MainPages />
-        </div>
+    </div>
       </Router>
     </DataProvider>
   );

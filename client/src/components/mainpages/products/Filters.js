@@ -5,6 +5,8 @@ function Filters() {
     const state = useContext(GlobalState)
     const [categories] = state.categoriesAPI.categories
 
+
+
     const [category, setCategory] = state.productsAPI.category
     const [sort, setSort] = state.productsAPI.sort
     const [search, setSearch] = state.productsAPI.search
@@ -25,6 +27,7 @@ function Filters() {
                         categories.map(category => (
                             <option value={"category=" + category._id} key={category._id}>
                                 {category.name}
+                            
                             </option>
                         ))
                     }
