@@ -1,7 +1,8 @@
 import React, {useState, useContext} from 'react'
 import {GlobalState} from '../../../GlobalState'
 import axios from 'axios'
-
+import alertify from 'alertifyjs'
+import 'alertifyjs/build/css/alertify.min.css'
 function Categories() {
     const state = useContext(GlobalState)
     const [categories] = state.categoriesAPI.categories
@@ -18,12 +19,12 @@ function Categories() {
                 const res = await axios.put(`/api/category/${id}`, {name: category}, {
                     headers: {Authorization: token}
                 })
-                alert(res.data.msg)
+                alertify.success(res.data.msg)
             }else{
                 const res = await axios.post('/api/category', {name: category}, {
                     headers: {Authorization: token}
                 })
-                alert(res.data.msg)
+                alertify.success(res.data.msg)
             }
             setOnEdit(false)
             setCategory('')
@@ -45,10 +46,10 @@ function Categories() {
             const res = await axios.delete(`/api/category/${id}`, {
                 headers: {Authorization: token}
             })
-            alert(res.data.msg)
+            alertify.success(res.data.msg)
             setCallback(!callback)
         } catch (err) {
-            alert(err.response.data.msg)
+            alertify.success(err.response.data.msg)
         }
     }
 

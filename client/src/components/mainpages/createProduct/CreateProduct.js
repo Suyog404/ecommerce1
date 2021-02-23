@@ -3,7 +3,8 @@ import axios from 'axios'
 import {GlobalState} from '../../../GlobalState'
 import Loading from '../utils/loading/Loading'
 import {useHistory, useParams} from 'react-router-dom'
-
+import alertify from 'alertifyjs'
+import 'alertifyjs/build/css/alertify.min.css'
 const initialState = {
     product_id:'',
     title: '',
@@ -51,16 +52,16 @@ function CreateProduct() {
     const handleUpload = async e =>{
         e.preventDefault()
         try {
-            if(!isAdmin) return alert("You're not an admin")
+            if(!isAdmin) return alertify.success("You're not an admin")
             const file = e.target.files[0]
             
-            if(!file) return alert("File not exist.")
+            if(!file) return alertify.success("File not exist.")
 
             if(file.size > 1024 * 1024) // 1mb
-                return alert("Size too large!")
+                return alertify.success("Size too large!")
 
             if(file.type !== 'image/jpeg' && file.type !== 'image/png') // 1mb
-                return alert("File format is incorrect.")
+                return alertify.success("File format is incorrect.")
 
             let formData = new FormData()
             formData.append('file', file)
@@ -87,7 +88,7 @@ function CreateProduct() {
             setLoading(false)
             setImages(false)
         } catch (err) {
-            alert(err.response.data.msg)
+            alertify.err(err.response.data.msg)
         }
     }
 
@@ -138,7 +139,7 @@ function CreateProduct() {
 
             <form onSubmit={handleSubmit}>
                 <div className="row">
-                    <label htmlFor="product_id">Product ID</label>
+                    <label htmlFor="product_id">Product </label>
                     <input type="text" name="product_id" id="product_id" required
                     value={product.product_id} onChange={handleChangeInput} disabled={onEdit} />
                 </div>

@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
-
+import alertify from 'alertifyjs'
+import 'alertifyjs/build/css/alertify.min.css'
 function Login() {
     const [user, setUser] = useState({
         email:'', password: ''
@@ -21,8 +22,7 @@ function Login() {
             
             window.location.href = "/";
         } catch (err) {
-           
-            alert(err.response.data.msg)
+           alertify.error(err.response.data.msg)
         }
     }
 

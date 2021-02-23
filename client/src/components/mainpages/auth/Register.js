@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import axios from 'axios'
-
+import alertify from 'alertifyjs'
+import 'alertifyjs/build/css/alertify.min.css'
 function Register() {
     const [user, setUser] = useState({
         name:'', email:'', password: ''
@@ -22,7 +23,7 @@ function Register() {
             
             window.location.href = "/";
         } catch (err) {
-            alert(err.response.data.msg)
+            alertify.error(err.response.data.msg)
         }
     }
 

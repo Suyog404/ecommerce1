@@ -14,6 +14,8 @@ import CreateProduct from './createProduct/CreateProduct'
 import {GlobalState} from '../../GlobalState'
 
 
+
+
 function Pages() {
     const state = useContext(GlobalState)
     const [isLogged] = state.userAPI.isLogged

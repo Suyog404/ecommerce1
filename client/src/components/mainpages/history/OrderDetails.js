@@ -57,7 +57,7 @@ function OrderDetails() {
                             <td><img src={item.images.url} alt="" /></td>
                             <td>{item.title}</td>
                             <td>{item.quantity}</td>
-                            <td>$ {item.price * item.quantity}</td>
+                            <td>Rs {item.price * item.quantity}</td>
                         </tr>
                         ))
                     }

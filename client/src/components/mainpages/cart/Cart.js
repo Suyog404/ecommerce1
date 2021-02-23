@@ -2,6 +2,8 @@ import React, {useContext, useState, useEffect} from 'react'
 import {GlobalState} from '../../../GlobalState'
 import axios from 'axios'
 import PaypalButton from './PaypalButton'
+import alertify from 'alertifyjs'
+import 'alertifyjs/build/css/alertify.min.css'
 
 function Cart() {
     const state = useContext(GlobalState)
@@ -52,7 +54,7 @@ function Cart() {
     }
 
     const removeProduct = id =>{
-        if(window.confirm("Do you want to delete this product?")){
+        if(alertify.success('Deleted from Cart')){
             cart.forEach((item, index) => {
                 if(item._id === id){
                     cart.splice(index, 1)
@@ -73,7 +75,7 @@ function Cart() {
 
         setCart([])
         addToCart([])
-        alert("You have successfully placed an order.")
+        alertify.success("You have successfully placed an order.")
     }
 
 

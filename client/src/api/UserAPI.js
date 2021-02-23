@@ -1,5 +1,7 @@
 import {useState, useEffect} from 'react'
 import axios from 'axios'
+import alertify from 'alertifyjs'
+import 'alertifyjs/build/css/alertify.min.css'
 
 function UserAPI(token) {
     const [isLogged, setIsLogged] = useState(false)
@@ -21,7 +23,7 @@ function UserAPI(token) {
                     setCart(res.data.cart)
 
                 } catch (err) {
-                    alert(err.response.data.msg)
+                    alertify.error(err.response.data.msg)
                 }
             }
 
@@ -33,8 +35,7 @@ function UserAPI(token) {
     
 
     const addCart = async (product) => {
-        if(!isLogged) return alert("Please login to continue buying")
-
+        if(!isLogged) return alertify.error('Hello sir Please login to continue buying')
         const check = cart.every(item =>{
             return item._id !== product._id
         })
@@ -47,7 +48,7 @@ function UserAPI(token) {
             })
 
         }else{
-            alert("This product has been added to cart.")
+            alertify.success('This product has been added to cart.')
         }
     }
 

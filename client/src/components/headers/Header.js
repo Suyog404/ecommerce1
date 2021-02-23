@@ -53,9 +53,10 @@ function Header() {
             <div className="logo">
                 <h1>
         
-                    <Link to="/">{isAdmin ? ' Welcome Admin' : 'Sports And Fitness'}</Link>
+                    <Link to="/">{isAdmin ? 'Hello Admin' : 'Sports And Fitness'}</Link>
                 </h1>
             </div>
+           
 
             <ul style={styleMenu}>
                 <li><Link to="/">{isAdmin ? 'Products' : 'Shop'}</Link></li>

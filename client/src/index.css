@@ -1,5 +1,6 @@
 * {
   padding: 0;
+  background-color: whitesmoke;
   box-sizing: border-box;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
@@ -7,6 +8,30 @@
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+ 
+}
+@keyframes blink{
+  0%{
+    background-color: navajowhite;
+  }
+  14%{
+    background-color: silver;
+  }
+  30%{
+    background-color: lightcyan;
+  }
+  42%{
+    background-color:burlywood;
+  }
+  58%{
+    background-color:gray;
+  }
+  85%{
+    background-color: skyblue;
+  }
+  100%{
+    background-color: cadetblue;
+  }
 }
 
 code {
@@ -15,10 +40,12 @@ code {
 }
 .App{
   max-width: 1230px;
+  background-color:white;
+  border: solid lightgray;
   min-height: 100vh;
   margin: 0 auto;
   padding: 0 20px;
-  box-shadow: 0 0 35px #eee;
+  box-shadow: 0 0 35px rgba(238, 238, 238, 0.335);
 }
 a{
   text-decoration: none;
@@ -35,6 +62,8 @@ button{
 
 header{
   min-height: 70px;
+  animation: blink 10s infinite;
+  -webkit-animation: blink 10s infinite;
   width: 100%;
   overflow: hidden;
   display: flex;
@@ -43,20 +72,23 @@ header{
   align-items: center;
   border-bottom: 1px solid #ddd;
 }
+
 header .logo{
   flex: 1;
+  background-color: whitesmoke;
 }
+
 header a{
   text-transform: uppercase;
-  color: #555;
+  color:#6ddfed;
+  font-weight: bold;
+  background-color: whitesmoke;
+
 }
 header ul li{
   display: inline-block;
-  opacity: 0.7;
-  padding: 0 20px;
-}
-header ul li:hover{
   opacity: 1;
+  padding: 0 20px;
 }
 .menu{
   display: none;
@@ -64,6 +96,7 @@ header ul li:hover{
 .cart-icon{
   position: relative;
   margin-right: 20px;
+  background-color:skyblue;
 }
 .cart-icon span{
   background: crimson;
@@ -78,6 +111,7 @@ header ul li:hover{
 /* ------------- Products -------------- */
 .products{
   width: 100%;
+  background-color:snow;
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
   justify-items: center;
@@ -85,7 +119,9 @@ header ul li:hover{
 }
 .product_card{
   max-width: 300px;
+  border:solid lightgrey;
   overflow: hidden;
+  background-color:whitesmoke;
   height: 500px;
   padding: 15px;
   box-shadow: 0 0 15px #ddd;
@@ -167,13 +203,18 @@ header ul li:hover{
   border: 1px solid crimson;
   padding: 10px 25px;
   color: crimson;
+  background-color:white;
   text-transform: uppercase;
+}
+.delete-all button:hover{
+  background-color:snow;
 }
 
 /* ------------ Filters Menu ----------------- */
 .filter_menu{
   width: 100%;
   min-height: 40px;
+  background-color: white;
   overflow: hidden;
   display: flex;
   justify-content: space-between;
@@ -182,7 +223,9 @@ header ul li:hover{
   margin: 15px 0;
 }
 .filter_menu select, input{
-  border: 1px solid #ccc;
+  border: 1px solid lightgray;
+  background-color: white;
+  border-radius: 10px;
   outline: none;
   height: 40px;
   padding: 0 5px;
@@ -202,7 +245,9 @@ header ul li:hover{
   border: 1px solid #555;
   text-transform: capitalize;
 }
-
+.loader{
+  background-color: white;
+}
 
 /* ---------------- Detail Product --------------- */
 .detail{
@@ -329,9 +374,11 @@ header ul li:hover{
 /* --------------- History ------------------- */
 .history-page{
   overflow-x: auto;
+  background-color:white;
 }
 .history-page h2, h4{
   text-align: center;
+  background-color: white;
   margin: 20px;
   text-transform: uppercase;
   letter-spacing: 1.2px;
@@ -362,6 +409,8 @@ table a{
 /* ------------------ Categories ------------------ */
 .categories{
   max-width: 700px;
+  background-color: whitesmoke;
+  border: solid grey;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -370,6 +419,7 @@ table a{
 .categories form{
   width: 290px;
   margin-bottom: 20px;
+  background-color: white;
 }
 .categories label{
   display: block;
@@ -389,12 +439,13 @@ table a{
 }
 .categories button{
   width: 70px;
-  background: #555;
   color: white;
+  background-color:grey;
   margin-left: 10px;
 }
 .categories .row{
   min-width: 290px;
+  background-color:honeydew;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -402,15 +453,23 @@ table a{
   margin-bottom: 10px;
   border: 1px solid #ccc;
 }
+.categories .row p{
+  background-color: honeydew;
+}
 
 /* ------------------- Create Product -------------- */
 .create_product{
   width: 100%;
+  background-color: white;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-around;
 }
+.create_product label{
+  background-color:white;
+}
+
 .upload{
   max-width: 450px;
   height: 500px;
@@ -469,23 +528,27 @@ table a{
 
 .create_product form{
   max-width: 500px;
+  background-color: white;
   min-width: 290px;
   width: 100%;
   margin: 15px 30px;
 }
 .create_product form .row{
   width: 100%;
+  background-color: white;
   margin: 15px 0;
 }
 .create_product form input, textarea{
   width: 100%;
+  background-color: white;
   min-height: 40px;
   padding: 0 5px;
 }
 .create_product form button{
   width: 200px;
   height: 40px;
-  background: #555;
+  border-radius: 10px;
+  background: greenyellow;
   color: white;
   text-transform: uppercase;
   letter-spacing: 2px;
