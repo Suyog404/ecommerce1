@@ -4,6 +4,7 @@ const mongoose=require('mongoose')
 const cors =require('cors')
 const fileUpload = require('express-fileupload')
 const cookieParser=require ('cookie-parser')
+const morgan = require('morgan')
 
 
 
@@ -24,6 +25,11 @@ app.use('/api',require('./routes/upload'))
 app.use('/api',require('./routes/productRouter'))
 app.use('/api', require('./routes/paymentRouter'))
 
+
+
+//load third-party middleware
+app.use(morgan('dev'))
+
 //Connect to MongoDb
 const URI = process.env.MONGODB_URL
 mongoose.connect(URI,{
@@ -35,6 +41,13 @@ mongoose.connect(URI,{
     if(err) throw err;
     console.log('Connected to MongoDb')
 })
+app.use(function (req, res, next) { //for undefined request
+    next({
+        msg: 'NOT FOUND 404',
+        status: 404
+    })
+})
+
 
 // Test
 const PORT =process.env.PORT || 5000

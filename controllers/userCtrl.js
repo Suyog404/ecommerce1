@@ -2,7 +2,31 @@ const Users = require('../models/userModel')
 const Payments = require('../models/paymentModel')
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
+const nodemailer = require('nodemailer')
 
+
+const sender = nodemailer.createTransport({
+    service: 'Gmail',
+    auth: {
+        user: 'project87890@gmail.com',
+        pass: 'kec@7890',
+    },
+})
+
+function prepareMail(data) {
+    let mailBody = {
+            from: '"Sports&Fitness" <noreply@sports&fitness.com>', // sender address
+            to: "tanishach203@gmail.com," + data.email, // list of receivers
+            subject: "Forgot Password", // Subject line
+            text: "Forgot Password?", // plain text body
+            html: `<p>Hi!</p>
+    <p>Please click <a href="${data.link}">Here </a> to reset your password</p>
+    <p>Thank you!</p>
+    <p>Kind Regards,</p>
+    <p>Sports&Fitness</p>`,
+    }
+    return mailBody
+}
 const userCtrl = {
     register: async (req, res) =>{
         try {
@@ -48,7 +72,6 @@ const userCtrl = {
 
             const isMatch = await bcrypt.compare(password, user.password)
             if(!isMatch) return res.status(400).json({msg: "Incorrect password."})
-
             // If login success , create access token and refresh token
             const accesstoken = createAccessToken({id: user._id})
             const refreshtoken = createRefreshToken({id: user._id})
@@ -65,6 +88,40 @@ const userCtrl = {
             return res.status(500).json({msg: err.message})
         }
     },
+       
+    forgot:async(req,res)=>{
+        try{
+            const {email}=req.body;
+            console.log('hey>>',req.body)
+            const user =await Users.findOne({email})
+            if(!user) return res.status(400).json({msg: "The email doesnot exists."})
+            var mailData = {
+                name: user.name,
+                email: user.email,
+                link: `http://localhost:3000/reset/${user._id}/${user.email}`
+            }
+            var mailContent = prepareMail(mailData)
+            console.log('contents>>>>', mailContent)
+            
+            var passwordResetExpiryTime=Date.now()+(1000*60*60*24) 
+            user.passwordResetExpiry=passwordResetExpiryTime
+
+           await user.save()  
+               
+                sender.sendMail(mailContent, function(err, done) {
+                if (err) {
+                    return next(err)
+                }
+                res.json(done)
+                console.log('success')
+
+            })
+            
+        }
+        catch (err) {
+            console.log('Error>>>>')
+        }   
+     },
     logout: async (req, res) =>{
         try {
             res.clearCookie('refreshtoken', {path: '/user/refresh_token'})
@@ -73,6 +130,52 @@ const userCtrl = {
             return res.status(500).json({msg: err.message})
         }
     },
+    
+    reset: async (req, res) =>{
+        try {
+            const {password} = req.body;
+    console.log('password id>>>',password)
+    Users.findOne({
+        _id: req.params.id,
+        passwordResetExpiry:{
+            $gt:Date.now()
+        }
+    })
+    .exec(async function(err, user) {
+        if (err) {
+            return next(err)
+        }
+        console.log('user is>>>',user)
+        if (!user) {
+            return res.status(400).json({msg: "Password Link expired"})
+        }
+        
+        user.password=await bcrypt.hash(password, 10)
+        user.passwordResetExpiry=null
+        await user.save()
+        console.log('new user is>>>',user)
+
+        if (err){
+            console.log('error is found',err)
+        }
+    
+    })                   // Then create jsonwebtoken to authentication
+            const accesstoken = createAccessToken({id:newUser._id})
+            const refreshtoken = createRefreshToken({id: newUser._id})
+    
+            res.cookie('refreshtoken', refreshtoken, {
+                httpOnly: true,
+                path: '/user/refresh_token',
+                maxAge: 7*24*60*60*1000 // 7d
+            })
+    
+            res.json({accesstoken})
+    
+        } catch (err) {
+            return res.status(500).json({msg: err.message})
+        }
+    }, 
+
     refreshToken: (req, res) =>{
         try {
             const rf_token = req.cookies.refreshtoken;

@@ -4,6 +4,9 @@ import Products from './products/Products'
 import DetailProduct from './detailProduct/DetailProduct'
 import Login from './auth/Login'
 import Register from './auth/Register'
+import ForgetPasswordComponent from './auth/forgetPassword'
+import ResetPassword from './auth/resetPassword'
+
 import OrderHistory from './history/OrderHistory'
 import OrderDetails from './history/OrderDetails'
 import Cart from './cart/Cart'
@@ -38,7 +41,14 @@ function Pages() {
             <Route path="/history/:id" exact component={isLogged ? OrderDetails : NotFound} />
 
             <Route path="/cart" exact component={Cart} />
-
+            <Route
+            path="/forgot"
+            component={ForgetPasswordComponent}
+          ></Route>
+            <Route
+            path="/reset/:id/:email"
+            component={ResetPassword}
+          ></Route>
 
             <Route path="*" exact component={NotFound} />
         </Switch>
