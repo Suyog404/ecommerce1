@@ -56,8 +56,8 @@ function Categories() {
     return (
         <div className="categories">
             <form onSubmit={createCategory}>
-                <label htmlFor="category">Category</label>
-                <input type="text" name="category" value={category} required
+                {/* <label htmlFor="category">Category</label> */}
+                <input type="text" name="category" id="category" value={category} placeholder="Category" required style={{marginTop:'20px'}}
                 onChange={e => setCategory(e.target.value)} />
 
                 <button type="submit">{onEdit? "Update" : "Create"}</button>
@@ -67,7 +67,7 @@ function Categories() {
                 {
                     categories.map(category => (
                         <div className="row" key={category._id}>
-                            <p>{category.name}</p>
+                            <p style={{textAlign:'left'}}>{category.name}</p>
                             <div>
                                 <button onClick={() => editCategory(category._id, category.name)}>Edit</button>
                                 <button onClick={() => deleteCategory(category._id)}>Delete</button>

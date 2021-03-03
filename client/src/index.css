@@ -1,14 +1,15 @@
-* {
-  padding: 0;
-  background-color: whitesmoke;
-  box-sizing: border-box;
+body {
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
- 
+}
+
+code {
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+    monospace;
 }
 @keyframes blink{
   0%{
@@ -34,10 +35,10 @@
   }
 }
 
-code {
+/* code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
+} */
 .App{
   max-width: 1230px;
   background-color:white;
@@ -96,14 +97,14 @@ header ul li{
 .cart-icon{
   position: relative;
   margin-right: 20px;
-  background-color:skyblue;
+  /* background-color:skyblue; */
 }
 .cart-icon span{
   background: crimson;
   border-radius: 20px;
   color: white;
   position: absolute;
-  top:-10px;
+  top:-20px;
   right: -10px;
   padding: 5px 7px;
   font-size: 10px;
@@ -122,7 +123,7 @@ header ul li{
   border:solid lightgrey;
   overflow: hidden;
   background-color:whitesmoke;
-  height: 500px;
+  /* height: 500px; */
   padding: 15px;
   box-shadow: 0 0 15px #ddd;
   margin: 10px 0;
@@ -148,11 +149,13 @@ header ul li{
 }
 .product_box p{
   width: 100%;
-  display: -webkit-box;
-  -webkit-box-orient: vertical;
-  -webkit-line-clamp: 3;
-  height: 70px;
   overflow: hidden;
+   text-overflow: ellipsis;
+   display: -webkit-box;
+   -webkit-line-clamp: 2; /* number of lines to show */
+   -webkit-box-orient: vertical;
+  /* height: 70px; */
+  /* overflow: hidden; */
   color: #323232;
 }
 .row_btn{
@@ -212,14 +215,14 @@ header ul li{
 
 /* ------------ Filters Menu ----------------- */
 .filter_menu{
-  width: 100%;
-  min-height: 40px;
-  background-color: white;
-  overflow: hidden;
+  /* width: 100%; */
+  /* min-height: 40px; */
+  /* background-color: white; */
+  /* overflow: hidden; */
   display: flex;
   justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   margin: 15px 0;
 }
 .filter_menu select, input{
@@ -232,7 +235,7 @@ header ul li{
 }
 .filter_menu input{
   flex: 1;
-  margin: 0 10px;
+  margin: 0 20px;
 }
 
 /* -------------------- Load More --------------- */
@@ -420,6 +423,8 @@ table a{
   width: 290px;
   margin-bottom: 20px;
   background-color: white;
+
+
 }
 .categories label{
   display: block;
@@ -427,21 +432,27 @@ table a{
   letter-spacing: 2px;
   text-transform: uppercase;
   margin-bottom: 10px;
+  
 }
 .categories input, button{
   height: 35px;
-  border: none;
+  /* border: none; */
   outline: none;
   border-bottom: 1px solid #555;
 }
 .categories input{
   width: 210px;
+  margin-left: 10px;
+
+  /* height:100px */
 }
 .categories button{
   width: 70px;
   color: white;
   background-color:grey;
   margin-left: 10px;
+  margin-top: 5px;
+  /* margin-left: 15px; */
 }
 .categories .row{
   min-width: 290px;
@@ -490,7 +501,7 @@ table a{
   position: absolute;
   width: 100%;
   height: 100%;
-  top:0;
+  top:50%;
   left: 0;
   background: white;
   color: rgb(250, 200, 107);

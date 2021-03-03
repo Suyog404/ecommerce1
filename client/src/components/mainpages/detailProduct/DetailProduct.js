@@ -32,9 +32,9 @@ function DetailProduct() {
                         <h6>#id: {detailProduct.product_id}</h6>
                     </div>
                     <span>Rs {detailProduct.price}</span>
-                    <p>{detailProduct.description}</p>
-                    <p>{detailProduct.content}</p>
-                    <p>Sold: {detailProduct.sold}</p>
+                    <p style={{textAlign:'left',color:'black'}}>{detailProduct.description}</p>
+                    <p style={{textAlign:'left',color:'black'}}>{detailProduct.content}</p>
+                    <p style={{textAlign:'left',color:'black',fontWeight:'700'}}>Sold: {detailProduct.sold}</p>
                     <Link to="/cart" className="cart"
                     onClick={() => addCart(detailProduct)}>
                         Buy Now

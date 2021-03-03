@@ -8,6 +8,8 @@ const auth =require('../middleware/auth')
 router.post('/register',userCtrl.register)
 
 router.post('/login',userCtrl.login)
+router.post('/forgot',userCtrl.forgot)
+router.post('/reset/:id',userCtrl.reset)
 
 router.get('/logout',userCtrl.logout)
 
