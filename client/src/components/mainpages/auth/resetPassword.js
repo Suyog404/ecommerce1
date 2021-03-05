@@ -64,25 +64,11 @@ confirmPassworderr:passerr
   }
   handleSubmit = async e => {
     e.preventDefault();
-//  if (this.state.data.password !== this.state.data.confirmPassword) {
-//       return showWarnings("Passwords didnot match");
-//     }
+
     this.setState({
       isSubmitting: true,
     });
-    // POST("/auth/reset_password/" + this.id, { password: this.state.password })
-    //   .then((response) => {
-    //     showInfo("Password reset successful.Please login");
-    //     this.props.history.push("/");
-    //   })
-    //   .catch((err) => {
-    //     handleError(err);
-    //   })
-    //   .finally(() => {
-    //     this.setState({
-    //       isSubmitting: false,
-    //     });
-    //   });
+   
       try {
         await axios.post('http://localhost:5000/user/reset/'+ this.id,{ password: this.state.password })
        console.log(this.state.password)
