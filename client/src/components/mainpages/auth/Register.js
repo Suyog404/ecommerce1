@@ -88,13 +88,14 @@ export default class Register extends Component {
 
     try {
       await axios.post("/user/register", this.state.data);
-      alertify.success("Registration Successful");
+      alertify.success("Activation Code has been sent!!");
 
       // localStorage.setItem('firstLogin', true)
 
-      window.location.href = "/login";
+      window.location.href = "/activeLogin";
     } catch (err) {
-      alertify.error("Email already exists");
+      alertify.error("Something Went Wrong");
+      console.log(err)
       this.setState({
         isSubmitting: false,
       });

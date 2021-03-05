@@ -4,33 +4,39 @@ const userSchema = new mongoose.Schema({
     name: {
         type: String,
         required: true,
-        trim:true
+        trim: true
     },
     email: {
-        type:String,
+        type: String,
         required: true,
-        trim:true,
-        unique:true
+        trim: true,
+        unique: true
     },
     password: {
-        type:String,
+        type: String,
         required: true,
-        trim:true
+        trim: true
     },
-    role:{
-        type:Number,
-        default:0
+    role: {
+        type: Number,
+        default: 0
     },
-    passwordResetExpiry:Date,
-
+    passwordResetExpiry: Date,
+    activation: {
+        type: String,
+        default: 'pending'
+    },
+    activeCode: {
+        type: String
+    },
+    activationExpiry: Date,
     cart: {
-        type:Array,
+        type: Array,
         default: []
     }
-    },
-    {
-        timestamps:true
+}, {
+    timestamps: true
 
 })
 
-module.exports =mongoose.model('Users',userSchema)
+module.exports = mongoose.model('Users', userSchema)
