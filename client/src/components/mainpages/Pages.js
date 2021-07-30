@@ -6,6 +6,7 @@ import Login from './auth/Login'
 import Register from './auth/Register'
 import ForgetPasswordComponent from './auth/forgetPassword'
 import ResetPassword from './auth/resetPassword'
+import ActiveLoginComponent from './auth/activeLogin'
 
 import OrderHistory from './history/OrderHistory'
 import OrderDetails from './history/OrderDetails'
@@ -39,7 +40,10 @@ function Pages() {
 
             <Route path="/history" exact component={isLogged ? OrderHistory : NotFound} />
             <Route path="/history/:id" exact component={isLogged ? OrderDetails : NotFound} />
-
+            <Route
+            path="/activeLogin"
+            component={ActiveLoginComponent}
+          ></Route>
             <Route path="/cart" exact component={Cart} />
             <Route
             path="/forgot"
